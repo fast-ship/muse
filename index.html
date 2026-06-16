@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUSE — Vertskhli St, Old Tbilisi · Piano · Cocktails · Georgian Toasts</title>
+<meta name="description" content="MUSE — an antique salon turned bar. Live piano every evening, handcrafted cocktails, natural Georgian wines. 52 Vertskhli St, Old Tbilisi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500&family=Inter:wght@200;300;400&family=Noto+Serif+Georgian:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════ TOKENS ═══════════════════════════════════ */
+:root {
+  --void:      #070608;
+  --noir:      #0E0B0F;
+  --noir-2:    #140F16;
+  --noir-3:    #1C1520;
+  --noir-4:    #251B2A;
+  --burgundy:  #5C1A2B;
+  --burg-lt:   #7D2438;
+  --burg-xl:   #A0334E;
+  --gold:      #C4963A;
+  --gold-lt:   #D9AF58;
+  --gold-gl:   #EDD080;
+  --gold-pa:   #F5E8C0;
+  --ivory:     #F0E8D8;
+  --ivory-dk:  #D8CFBC;
+  --ivory-md:  #A89880;
+  --ivory-dim: #6E6258;
+
+  --f-disp:  'Cormorant', Georgia, serif;
+  --f-cap:   'Cinzel', Georgia, serif;
+  --f-geo:   'Noto Serif Georgian', Georgia, serif;
+  --f-body:  'Inter', system-ui, sans-serif;
+  --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--void);
+  color: var(--ivory);
+  font-family: var(--f-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: none; font-family: var(--f-body); }
+
+/* ═══════════ GRAIN ════════════════════════════════════ */
+.grain {
+  position: fixed; inset: 0; z-index: 9990;
+  pointer-events: none; opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  animation: grn .35s steps(1) infinite;
+}
+@keyframes grn {
+  0%  { background-position: 0 0 }
+  25% { background-position: -80px 40px }
+  50% { background-position: 40px -80px }
+  75% { background-position: -40px 80px }
+}
+
+/* ═══════════ CURSOR ═══════════════════════════════════ */
+#cur {
+  position: fixed; z-index: 9999; pointer-events: none;
+  top: 0; left: 0;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+  transition: width .3s var(--ease), height .3s var(--ease), opacity .2s;
+}
+#cur.xl { width: 56px; height: 56px; opacity: .12; background: var(--gold-gl); }
+#cur-r {
+  position: fixed; z-index: 9998; pointer-events: none;
+  top: 0; left: 0;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(196,150,58,.25);
+  transform: translate(-50%, -50%);
+}
+
+/* ═══════════ NAV ══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2rem 4rem;
+  transition: background .6s, padding .4s, border-color .6s;
+  border-bottom: 1px solid transparent;
+}
+nav.solid {
+  background: rgba(7, 6, 8, .92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1.1rem 4rem;
+  border-bottom-color: rgba(196, 150, 58, .1);
+}
+.n-logo {
+  font-family: var(--f-cap);
+  font-size: 1.25rem; font-weight: 400;
+  letter-spacing: .45em; color: var(--ivory);
+  display: flex; align-items: center; gap: .8rem;
+}
+.n-logo-ornament {
+  width: 18px; height: 18px; flex-shrink: 0;
+}
+.n-links { display: flex; align-items: center; gap: 2.5rem; }
+.n-links a {
+  font-size: .62rem; font-weight: 200; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--ivory-md);
+  transition: color .25s;
+}
+.n-links a:hover { color: var(--gold-lt); }
+.lsw {
+  display: flex; gap: 1px; background: rgba(196,150,58,.08);
+  border-radius: 20px; padding: 3px;
+}
+.lsw button {
+  background: none; border: none;
+  font-size: .62rem; font-weight: 200; letter-spacing: .1em;
+  padding: 4px 11px; border-radius: 14px;
+  color: var(--ivory-dim); transition: all .2s;
+}
+.lsw button.on { background: var(--gold); color: var(--void); font-weight: 400; }
+.n-res {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .6rem 1.4rem;
+  border: 1px solid rgba(196,150,58,.3); border-radius: 1px;
+  font-size: .62rem; font-weight: 200; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold-lt); transition: all .25s;
+}
+.n-res:hover { background: rgba(196,150,58,.1); border-color: var(--gold); }
+
+/* ═══════════ HERO ══════════════════════════════════════ */
+#hero {
+  position: relative; height: 100vh; min-height: 700px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+/* Multi-layer background */
+.hbg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 80% at 50% 50%, rgba(92, 26, 43, .18) 0%, transparent 65%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(7,6,8,.98) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(7,6,8,.7) 0%, transparent 25%, transparent 60%, rgba(7,6,8,.9) 100%),
+    url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1600&q=90') center 35% / cover;
+}
+.hbg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(7,6,8,.65) 0%, rgba(7,6,8,.1) 30%,
+    rgba(7,6,8,.1) 70%, rgba(7,6,8,.65) 100%);
+}
+
+/* ── Gold dust particles ── */
+#dust { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.dp {
+  position: absolute; border-radius: 50%;
+  background: var(--gold-gl);
+  animation: dustFloat linear infinite;
+  opacity: 0;
+}
+@keyframes dustFloat {
+  0%   { opacity: 0; transform: translate(0, 0) scale(1); }
+  15%  { opacity: .7; }
+  85%  { opacity: .25; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.4); }
+}
+
+/* ── Hero ornamental frame ── */
+.h-frame {
+  position: absolute; inset: 3.5rem 5rem;
+  pointer-events: none; z-index: 1;
+}
+.h-frame-corner {
+  position: absolute;
+  width: 60px; height: 60px;
+}
+.h-frame-corner svg { width: 100%; height: 100%; }
+.h-frame-corner.tl { top: 0; left: 0; }
+.h-frame-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+.h-frame-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.h-frame-corner.br { bottom: 0; right: 0; transform: scale(-1); }
+.h-frame-line-h {
+  position: absolute; left: 60px; right: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(196,150,58,.25) 20%, rgba(196,150,58,.4) 50%, rgba(196,150,58,.25) 80%, transparent 100%);
+}
+.h-frame-line-h.top { top: 0; }
+.h-frame-line-h.bot { bottom: 0; }
+.h-frame-line-v {
+  position: absolute; top: 60px; bottom: 60px; width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(196,150,58,.2) 20%, rgba(196,150,58,.3) 50%, rgba(196,150,58,.2) 80%, transparent 100%);
+}
+.h-frame-line-v.lft { left: 0; }
+.h-frame-line-v.rgt { right: 0; }
+
+/* ── Hero content ── */
+.hc {
+  position: relative; z-index: 2;
+  text-align: center; padding: 0 2rem;
+}
+.h-pre {
+  display: flex; align-items: center; gap: 1.5rem;
+  justify-content: center; margin-bottom: 2rem;
+  opacity: 0; transform: translateY(20px);
+  animation: fu .9s .1s var(--ease) forwards;
+}
+.h-pre-line {
+  height: 1px; width: 50px;
+  background: linear-gradient(90deg, transparent, rgba(196,150,58,.5));
+}
+.h-pre-line.r { background: linear-gradient(270deg, transparent, rgba(196,150,58,.5)); }
+.h-pre-text {
+  font-family: var(--f-cap); font-size: .58rem; font-weight: 400;
+  letter-spacing: .45em; text-transform: uppercase;
+  color: var(--gold);
+}
+.h-title {
+  font-family: var(--f-disp);
+  font-size: clamp(5rem, 18vw, 14rem);
+  font-weight: 300; line-height: .82; letter-spacing: .08em;
+  color: var(--ivory);
+  opacity: 0; animation: fu 1.2s .3s var(--ease) forwards;
+  margin-bottom: .6rem;
+  text-shadow: 0 0 80px rgba(196,150,58,.08);
+}
+.h-rule {
+  display: flex; align-items: center; gap: 1rem;
+  justify-content: center; margin: 1.25rem 0;
+  opacity: 0; animation: fu .9s .55s var(--ease) forwards;
+}
+.h-rule-line {
+  height: 1px; flex: 1; max-width: 100px;
+  background: rgba(196,150,58,.3);
+}
+.h-rule-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold); transform: rotate(45deg);
+}
+.h-sub-geo {
+  font-family: var(--f-geo); font-size: clamp(.9rem, 2vw, 1.2rem);
+  font-weight: 300; color: var(--ivory-dk); letter-spacing: .06em;
+  opacity: 0; animation: fu .9s .7s var(--ease) forwards;
+  margin-bottom: .4rem;
+}
+.h-sub {
+  font-size: .68rem; font-weight: 200; letter-spacing: .32em;
+  text-transform: uppercase; color: var(--gold);
+  opacity: 0; animation: fu .9s .85s var(--ease) forwards;
+  margin-bottom: 3.5rem;
+}
+.h-pills {
+  display: flex; gap: .65rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fu .9s 1.05s var(--ease) forwards;
+}
+.h-pill {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .55rem 1.15rem;
+  background: rgba(240,232,216,.04);
+  border: 1px solid rgba(196,150,58,.18);
+  border-radius: 1px;
+  font-size: .62rem; font-weight: 200; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ivory-md); transition: all .3s;
+}
+.h-pill:hover {
+  background: rgba(196,150,58,.1);
+  border-color: rgba(196,150,58,.5);
+  color: var(--gold-lt);
+}
+.h-pill svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+/* Floating card */
+.h-float {
+  position: absolute; left: 4.5rem; bottom: 28%;
+  background: rgba(14, 11, 15, .8);
+  border: 1px solid rgba(196,150,58,.18);
+  border-radius: 1px; padding: 1.2rem 1.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0; transform: translateY(18px);
+  animation: fu 1s 1.25s var(--ease) forwards;
+  max-width: 210px;
+}
+.h-float-label {
+  font-family: var(--f-cap); font-size: .52rem; font-weight: 400;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.h-float-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+  animation: gldPls 2.5s ease-in-out infinite;
+}
+@keyframes gldPls {
+  0%,100% { box-shadow: 0 0 0 0 rgba(196,150,58,.6); }
+  50% { box-shadow: 0 0 0 7px rgba(196,150,58,0); }
+}
+.h-float-val {
+  font-family: var(--f-disp); font-size: 1.15rem; font-weight: 300;
+  color: var(--ivory); line-height: 1.25; margin-bottom: .4rem;
+}
+.h-float-note {
+  font-size: .65rem; font-weight: 200; color: var(--ivory-dim); line-height: 1.5;
+}
+
+/* Scroll hint */
+.h-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  z-index: 2;
+  opacity: 0; animation: fu .9s 1.6s var(--ease) forwards;
+}
+.h-scroll span {
+  font-size: .55rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+.h-scl {
+  width: 1px; height: 54px;
+  background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+  transform-origin: top;
+  animation: sclA 2.6s ease-in-out infinite;
+}
+@keyframes sclA {
+  0%  { transform: scaleY(0); opacity: 1; transform-origin: top; }
+  45% { transform: scaleY(1); opacity: 1; transform-origin: top; }
+  46% { transform-origin: bottom; }
+  100%{ transform: scaleY(0); opacity: .2; transform-origin: bottom; }
+}
+@keyframes fu { to { opacity: 1; transform: none; } }
+
+/* ═══════════ REVEAL ═══════════════════════════════════ */
+.rv  { opacity: 0; transform: translateY(28px); transition: opacity .95s var(--ease), transform .95s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+.rl  { opacity: 0; transform: translateX(-28px); transition: opacity .95s var(--ease), transform .95s var(--ease); }
+.rl.in { opacity: 1; transform: none; }
+.rr  { opacity: 0; transform: translateX(28px); transition: opacity .95s var(--ease), transform .95s var(--ease); }
+.rr.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+.d5 { transition-delay: .5s; }
+
+/* ═══════════ SECTION COMMON ═══════════════════════════ */
+.sec { padding: 8rem 4rem; }
+.eye {
+  font-family: var(--f-cap); font-size: .55rem; font-weight: 400;
+  letter-spacing: .4em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.1rem;
+}
+.tgeo {
+  font-family: var(--f-geo); font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 300; color: var(--ivory-dk); margin-bottom: .4rem;
+}
+.ttl {
+  font-family: var(--f-disp);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 300; line-height: .9; color: var(--ivory);
+}
+.ttl em { font-style: italic; color: var(--gold-gl); }
+.rule {
+  display: flex; align-items: center; gap: .8rem;
+  margin: 2rem 0;
+}
+.rule-line { height: 1px; width: 32px; background: rgba(196,150,58,.4); }
+.rule-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+
+/* ═══════════ AMBIENCE STRIP ════════════════════════════ */
+#ambience {
+  background: var(--noir);
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.amb-item {
+  position: relative; overflow: hidden;
+  min-height: 480px;
+}
+.amb-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.7) brightness(.85);
+  transition: transform .8s var(--ease), filter .6s;
+}
+.amb-item:hover img { transform: scale(1.05); filter: saturate(1) brightness(.95); }
+.amb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(7,6,8,.88) 0%, rgba(7,6,8,.2) 50%, transparent 100%);
+}
+.amb-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2rem;
+}
+.amb-cap-num {
+  font-family: var(--f-disp); font-size: 3rem; font-weight: 300;
+  color: rgba(196,150,58,.15); line-height: 1;
+  margin-bottom: .5rem;
+}
+.amb-cap-label {
+  font-family: var(--f-cap); font-size: .52rem; font-weight: 400;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .3rem;
+}
+.amb-cap-title {
+  font-family: var(--f-disp); font-size: 1.3rem; font-weight: 300;
+  color: var(--ivory); line-height: 1.2;
+}
+.amb-divider { width: 1px; background: rgba(196,150,58,.08); }
+
+/* ═══════════ PIANO / SCHEDULE ══════════════════════════ */
+#piano {
+  background: var(--void);
+  position: relative; overflow: hidden;
+}
+.piano-glow {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(92,26,43,.22) 0%, transparent 65%);
+  pointer-events: none;
+}
+.piano-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.piano-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: end; margin-bottom: 5rem;
+}
+.piano-intro {
+  font-size: .9rem; font-weight: 200; line-height: 2;
+  color: var(--ivory-md);
+}
+.piano-intro em { color: var(--ivory); font-family: var(--f-disp); font-style: italic; font-size: 1.05rem; }
+
+/* Piano keys decoration */
+.keys-deco {
+  display: flex; gap: 2px; margin-bottom: 3rem; height: 5px;
+}
+.key-w { flex: 1; background: rgba(196,150,58,.12); border-radius: 0 0 1px 1px; }
+.key-b { flex: .65; background: rgba(196,150,58,.06); margin-top: -2px; }
+
+/* Schedule table */
+.sched { display: flex; flex-direction: column; gap: 1px; }
+.sched-row {
+  display: grid; grid-template-columns: 90px 1fr 140px auto;
+  gap: 2rem; align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(240,232,216,.02);
+  border: 1px solid rgba(196,150,58,.07);
+  position: relative; overflow: hidden;
+  transition: background .3s, border-color .25s;
+}
+.sched-row::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, var(--burg-lt), var(--gold));
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform .45s var(--ease);
+}
+.sched-row:hover { background: rgba(92,26,43,.15); border-color: rgba(196,150,58,.15); }
+.sched-row:hover::before { transform: scaleY(1); }
+.sched-day {
+  font-family: var(--f-cap); font-size: .58rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+}
+.sched-info {}
+.sched-artist {
+  font-family: var(--f-disp); font-size: 1.15rem; font-weight: 300;
+  color: var(--ivory); margin-bottom: .2rem;
+}
+.sched-genre {
+  font-size: .7rem; font-weight: 200; color: var(--ivory-dim); letter-spacing: .06em;
+}
+.sched-time {
+  font-family: var(--f-disp); font-size: 1.4rem; font-weight: 300;
+  color: var(--gold); text-align: right;
+}
+.sched-time-lbl {
+  font-size: .52rem; letter-spacing: .14em; color: var(--ivory-dim);
+  text-align: right; margin-top: 2px;
+}
+.sched-tag {
+  display: inline-block; padding: .25rem .7rem;
+  border: 1px solid rgba(196,150,58,.18); border-radius: 1px;
+  font-family: var(--f-cap); font-size: .5rem; font-weight: 400;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+}
+.sched-tag.burg {
+  border-color: rgba(125,36,56,.5);
+  color: var(--burg-xl); background: rgba(92,26,43,.2);
+}
+.sched-bg {
+  position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-disp); font-size: 5rem; font-weight: 300;
+  color: rgba(196,150,58,.03); line-height: 1; pointer-events: none;
+}
+.piano-note {
+  margin-top: 3rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid rgba(196,150,58,.1);
+  background: rgba(196,150,58,.03);
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.piano-note-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: rgba(196,150,58,.08);
+  border: 1px solid rgba(196,150,58,.15);
+  display: flex; align-items: center; justify-content: center;
+}
+.piano-note p {
+  font-family: var(--f-disp); font-style: italic;
+  font-size: .95rem; color: var(--ivory-md); line-height: 1.6;
+}
+
+/* ═══════════ COCKTAIL SHOWCASE ════════════════════════ */
+#cocktails {
+  background: var(--noir-2);
+  position: relative; overflow: hidden;
+}
+.burg-glow {
+  position: absolute; bottom: 0; right: 0;
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse at 100% 100%, rgba(92,26,43,.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+.ckt-inner { max-width: 1200px; margin: 0 auto; }
+.ckt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(196,150,58,.06);
+  border: 1px solid rgba(196,150,58,.06);
+  margin-top: 4rem;
+}
+.ckt-card {
+  background: var(--noir-2);
+  padding: 0;
+  position: relative; overflow: hidden;
+  transition: background .3s;
+}
+.ckt-card:hover { background: rgba(28, 21, 32, .8); }
+.ckt-img {
+  aspect-ratio: 1;
+  overflow: hidden; position: relative;
+}
+.ckt-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: sepia(.15) saturate(.8);
+  transition: transform .8s var(--ease), filter .5s;
+}
+.ckt-card:hover .ckt-img img { transform: scale(1.06); filter: sepia(.05) saturate(1); }
+.ckt-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(14,11,15,.8) 0%, transparent 50%);
+}
+.ckt-num {
+  position: absolute; top: 1rem; left: 1.25rem;
+  font-family: var(--f-disp); font-size: 2.5rem; font-weight: 300;
+  color: rgba(196,150,58,.12); line-height: 1;
+}
+.ckt-body { padding: 1.75rem; }
+.ckt-name {
+  font-family: var(--f-disp); font-size: 1.3rem; font-weight: 300;
+  color: var(--ivory); margin-bottom: .25rem;
+}
+.ckt-name-geo {
+  font-family: var(--f-geo); font-size: .75rem; font-weight: 300;
+  color: var(--ivory-dim); display: block; margin-bottom: .7rem;
+}
+.ckt-desc {
+  font-size: .75rem; font-weight: 200; line-height: 1.7;
+  color: var(--ivory-dim); margin-bottom: 1.1rem;
+}
+.ckt-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ckt-price {
+  font-family: var(--f-disp); font-size: 1.4rem; font-weight: 300;
+  color: var(--gold);
+}
+.ckt-price span { font-family: var(--f-body); font-size: .58rem; color: var(--ivory-dim); }
+.ckt-badge {
+  padding: .22rem .7rem;
+  border: 1px solid rgba(196,150,58,.2); border-radius: 1px;
+  font-family: var(--f-cap); font-size: .48rem; font-weight: 400;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+}
+.ckt-badge.sig { border-color: rgba(160,51,78,.4); color: var(--burg-xl); background: rgba(92,26,43,.2); }
+/* Featured card */
+.ckt-card.feat {
+  grid-column: span 3;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.ckt-card.feat .ckt-img { aspect-ratio: unset; min-height: 360px; }
+.ckt-card.feat .ckt-body {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 3rem;
+}
+.ckt-card.feat .ckt-name { font-size: 1.8rem; margin-bottom: .4rem; }
+.ckt-card.feat .ckt-desc { font-size: .82rem; }
+
+/* ═══════════ WINE ══════════════════════════════════════ */
+#wine {
+  background: var(--void);
+  position: relative;
+}
+.wine-inner { max-width: 1200px; margin: 0 auto; }
+.wine-layout {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 6rem; margin-top: 5rem; align-items: start;
+}
+.wine-img-wrap { position: relative; }
+.wine-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  filter: sepia(.1) saturate(.85);
+}
+.wine-img-border {
+  position: absolute; inset: 14px;
+  border: 1px solid rgba(196,150,58,.12);
+  pointer-events: none;
+}
+.wine-seal {
+  position: absolute; top: -1.5rem; right: -1.5rem;
+  width: 80px; height: 80px;
+  background: var(--burgundy);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 2px solid rgba(196,150,58,.3);
+}
+.wine-seal-txt {
+  font-family: var(--f-cap); font-size: .42rem; font-weight: 400;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); text-align: center; line-height: 1.5;
+}
+
+/* Wine list */
+.wl-section { margin-bottom: 2.5rem; }
+.wl-sec-head {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid rgba(196,150,58,.1);
+}
+.wl-sec-title {
+  font-family: var(--f-cap); font-size: .55rem; font-weight: 400;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+}
+.wl-sec-ornament { color: var(--burg-lt); font-size: .7rem; }
+.wl-item {
+  display: flex; align-items: baseline; gap: .75rem;
+  padding: .8rem 0;
+  border-bottom: 1px solid rgba(240,232,216,.04);
+}
+.wl-item:last-child { border-bottom: none; }
+.wl-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--gold); opacity: .5; flex-shrink: 0;
+}
+.wl-name {
+  font-family: var(--f-disp); font-size: 1rem; font-weight: 300;
+  color: var(--ivory); flex: 1;
+}
+.wl-name small {
+  font-size: .72rem; font-style: italic; color: var(--ivory-dim);
+  display: block; margin-top: 2px;
+}
+.wl-price {
+  font-family: var(--f-disp); font-size: 1rem; font-weight: 300;
+  color: var(--gold); flex-shrink: 0;
+}
+.wl-price span { font-family: var(--f-body); font-size: .58rem; color: var(--ivory-dim); }
+
+/* ═══════════ GALLERY ═══════════════════════════════════ */
+#gallery {
+  background: var(--noir-3);
+  padding: 8rem 4rem;
+}
+.gal-inner { max-width: 1200px; margin: 0 auto; }
+.gal-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 2rem; margin-bottom: 4rem; flex-wrap: wrap;
+}
+.gal-quote {
+  font-family: var(--f-disp); font-style: italic;
+  font-size: 1rem; color: var(--ivory-dim); line-height: 1.7;
+  max-width: 300px; text-align: right;
+}
+.gal-quote cite {
+  display: block; margin-top: .5rem;
+  font-family: var(--f-cap); font-size: .48rem; font-weight: 400;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gold); font-style: normal;
+}
+/* Mosaic grid */
+.gal-mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 280px 200px 240px;
+  gap: 4px;
+}
+.gi { overflow: hidden; border-radius: 1px; position: relative; }
+.gi img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.65) brightness(.85);
+  transition: transform .8s var(--ease), filter .6s;
+}
+.gi:hover img { transform: scale(1.06); filter: saturate(.9) brightness(1); }
+.gi-c {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(7,6,8,.85) 0%, transparent 50%);
+  display: flex; align-items: flex-end; padding: 1.25rem;
+  opacity: 0; transition: opacity .35s;
+}
+.gi:hover .gi-c { opacity: 1; }
+.gi-cl { font-family: var(--f-cap); font-size: .5rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.gi-ct { font-family: var(--f-disp); font-size: 1rem; color: var(--ivory); }
+/* placements */
+.g1 { grid-column: 1/6; grid-row: 1; }
+.g2 { grid-column: 6/9; grid-row: 1; }
+.g3 { grid-column: 9/13; grid-row: 1; }
+.g4 { grid-column: 1/4; grid-row: 2; }
+.g5 { grid-column: 4/8; grid-row: 2; }
+.g6 { grid-column: 8/13; grid-row: 2; }
+.g7 { grid-column: 1/5; grid-row: 3; }
+.g8 { grid-column: 5/9; grid-row: 3; }
+.g9 { grid-column: 9/13; grid-row: 3; }
+
+/* ═══════════ RESERVATION ═══════════════════════════════ */
+#reservation {
+  background:
+    radial-gradient(ellipse 60% 60% at 80% 50%, rgba(92,26,43,.22) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 80% at 10% 80%, rgba(196,150,58,.04) 0%, transparent 50%),
+    var(--void);
+  padding: 8rem 4rem;
+}
+.res-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem;
+  align-items: start;
+}
+.res-left p {
+  font-size: .88rem; font-weight: 200; line-height: 2;
+  color: var(--ivory-md); margin-top: 1.5rem;
+}
+.res-details { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.rd {
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.rd-ic {
+  width: 36px; height: 36px; flex-shrink: 0; border-radius: 1px;
+  background: rgba(196,150,58,.07);
+  border: 1px solid rgba(196,150,58,.13);
+  display: flex; align-items: center; justify-content: center;
+}
+.rd-ic svg { width: 14px; height: 14px; color: var(--gold); }
+.rd h4 {
+  font-family: var(--f-cap); font-size: .5rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ivory-dim); margin-bottom: 4px;
+}
+.rd p { font-size: .85rem; font-weight: 200; color: var(--ivory-dk); }
+.rd a { color: var(--gold-lt); transition: color .2s; }
+.rd a:hover { color: var(--gold-gl); }
+
+/* Ornament above form */
+.form-ornament {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.fo-line { flex: 1; height: 1px; background: rgba(196,150,58,.15); }
+.fo-center {
+  font-family: var(--f-disp); font-size: 1.5rem; font-weight: 300;
+  color: var(--gold); opacity: .5;
+}
+
+/* Form */
+.rform { display: flex; flex-direction: column; gap: 1rem; }
+.fg { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+.fl { display: flex; flex-direction: column; gap: .4rem; }
+.fl label {
+  font-family: var(--f-cap); font-size: .5rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--ivory-dim);
+}
+.fl input, .fl select, .fl textarea {
+  background: rgba(240,232,216,.04);
+  border: 1px solid rgba(196,150,58,.14);
+  border-radius: 1px; padding: .75rem 1rem;
+  color: var(--ivory); font-family: var(--f-body); font-size: .88rem;
+  font-weight: 200; outline: none; appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .2s, background .2s; cursor: none;
+}
+.fl input::placeholder, .fl textarea::placeholder { color: rgba(110,98,88,.4); }
+.fl input:focus, .fl select:focus, .fl textarea:focus {
+  border-color: rgba(196,150,58,.4);
+  background: rgba(196,150,58,.04);
+}
+.fl select option { background: var(--noir-2); color: var(--ivory); }
+.fl textarea { resize: vertical; min-height: 95px; }
+.sbtn {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: 1.05rem 2rem;
+  background: var(--gold); color: var(--void);
+  font-family: var(--f-cap); font-size: .58rem; font-weight: 400;
+  letter-spacing: .3em; text-transform: uppercase;
+  border: none; border-radius: 1px;
+  transition: background .25s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.sbtn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 50%);
+}
+.sbtn:hover { background: var(--gold-lt); transform: translateY(-2px); }
+.s-ok {
+  display: none; text-align: center; padding: 3rem 2rem;
+  border: 1px solid rgba(196,150,58,.15); border-radius: 1px;
+}
+.s-ok.show { display: block; }
+.s-ok-ornament { font-family: var(--f-disp); font-size: 3rem; color: var(--gold); opacity: .6; margin-bottom: 1rem; }
+.s-ok h3 {
+  font-family: var(--f-disp); font-size: 2rem; font-weight: 300;
+  color: var(--ivory); margin-bottom: .5rem;
+}
+.s-ok p { font-size: .82rem; font-weight: 200; color: var(--ivory-dim); }
+
+/* ═══════════ FOOTER ════════════════════════════════════ */
+footer {
+  background: var(--void);
+  border-top: 1px solid rgba(196,150,58,.08);
+  padding: 3rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.f-logo {
+  font-family: var(--f-cap); font-size: 1.2rem; font-weight: 400;
+  letter-spacing: .5em; color: var(--ivory);
+}
+.f-links { display: flex; gap: 2.5rem; }
+.f-links a {
+  font-family: var(--f-cap); font-size: .5rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ivory-dim); transition: color .2s;
+}
+.f-links a:hover { color: var(--gold); }
+.f-copy { font-size: .6rem; font-weight: 200; color: rgba(110,98,88,.35); letter-spacing: .08em; }
+
+/* ═══════════ BTN UTILS ═════════════════════════════════ */
+.btn-g {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .7rem 1.5rem;
+  border: 1px solid rgba(196,150,58,.28); border-radius: 1px;
+  background: transparent; color: var(--gold-lt);
+  font-family: var(--f-cap); font-size: .52rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  transition: all .25s;
+}
+.btn-g:hover { background: rgba(196,150,58,.1); border-color: var(--gold); }
+.btn-gd {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .7rem 1.5rem;
+  border: 1px solid var(--gold); border-radius: 1px;
+  background: var(--gold); color: var(--void);
+  font-family: var(--f-cap); font-size: .52rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  transition: all .25s;
+}
+.btn-gd:hover { background: var(--gold-lt); border-color: var(--gold-lt); transform: translateY(-1px); }
+
+/* ═══════════ RESPONSIVE ════════════════════════════════ */
+@media (max-width: 960px) {
+  nav { padding: 1.25rem 1.5rem; }
+  nav.solid { padding: .9rem 1.5rem; }
+  .n-links { display: none; }
+  .sec { padding: 5rem 1.5rem; }
+  #ambience { grid-template-columns: 1fr; }
+  .amb-divider { display: none; }
+  .amb-item { min-height: 300px; }
+  .piano-header { grid-template-columns: 1fr; }
+  .sched-row { grid-template-columns: 70px 1fr; }
+  .sched-time, .sched-tag { display: none; }
+  .ckt-card.feat { grid-column: span 3; grid-template-columns: 1fr; }
+  .ckt-grid { grid-template-columns: 1fr; }
+  .ckt-card.feat .ckt-img { min-height: 260px; }
+  .wine-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .gal-mosaic {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 200px 160px 180px;
+  }
+  .g1 { grid-column: 1/4; } .g2 { grid-column: 4/7; } .g3 { display: none; }
+  .g4 { grid-column: 1/3; } .g5 { grid-column: 3/5; } .g6 { grid-column: 5/7; }
+  .g7 { grid-column: 1/3; } .g8 { grid-column: 3/5; } .g9 { grid-column: 5/7; }
+  .res-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+  footer { flex-direction: column; text-align: center; }
+  .f-links { justify-content: center; }
+  .h-frame { display: none; }
+  .h-float { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="cur-r" aria-hidden="true"></div>
+
+<!-- ══════════ NAV ══════════════════════════════════════ -->
+<nav id="nav">
+  <div class="n-logo">
+    <!-- Ornamental M SVG -->
+    <svg class="n-logo-ornament" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <rect x="1" y="1" width="16" height="16" stroke="rgba(196,150,58,.4)" stroke-width=".8"/>
+      <rect x="3.5" y="3.5" width="11" height="11" stroke="rgba(196,150,58,.18)" stroke-width=".5"/>
+      <path d="M5 13V5L9 10L13 5V13" stroke="#C4963A" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    MUSE
+  </div>
+  <div class="n-links">
+    <a href="#piano" data-ka="პიანო" data-en="Piano">პიანო</a>
+    <a href="#cocktails" data-ka="ქოქტეილები" data-en="Cocktails">ქოქტეილები</a>
+    <a href="#wine" data-ka="ღვინო" data-en="Wine">ღვინო</a>
+    <a href="#gallery" data-ka="გალერეა" data-en="Gallery">გალერეა</a>
+    <div class="lsw">
+      <button class="on" data-lang="ka" onclick="sLang('ka')">ქა</button>
+      <button data-lang="en" onclick="sLang('en')">EN</button>
+    </div>
+    <a href="#reservation" class="n-res">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span data-ka="ჯავშანი" data-en="Reserve">ჯავშანი</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hbg" id="hbg"></div>
+  <div id="dust" aria-hidden="true"></div>
+
+  <!-- Ornamental corner frame -->
+  <div class="h-frame" aria-hidden="true">
+    <div class="h-frame-corner tl">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 58 L2 2 L58 2" stroke="rgba(196,150,58,0.3)" stroke-width="1"/>
+        <path d="M8 52 L8 8 L52 8" stroke="rgba(196,150,58,0.12)" stroke-width="0.5"/>
+        <path d="M2 18 L8 18 M2 28 L8 28 M18 2 L18 8 M28 2 L28 8" stroke="rgba(196,150,58,0.25)" stroke-width="0.8"/>
+        <circle cx="2" cy="2" r="2" fill="rgba(196,150,58,0.4)"/>
+      </svg>
+    </div>
+    <div class="h-frame-corner tr">
+      <svg viewBox="0 0 60 60" fill="none">
+        <path d="M2 58 L2 2 L58 2" stroke="rgba(196,150,58,0.3)" stroke-width="1"/>
+        <path d="M8 52 L8 8 L52 8" stroke="rgba(196,150,58,0.12)" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="rgba(196,150,58,0.4)"/>
+      </svg>
+    </div>
+    <div class="h-frame-corner bl">
+      <svg viewBox="0 0 60 60" fill="none">
+        <path d="M2 58 L2 2 L58 2" stroke="rgba(196,150,58,0.3)" stroke-width="1"/>
+        <path d="M8 52 L8 8 L52 8" stroke="rgba(196,150,58,0.12)" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="rgba(196,150,58,0.4)"/>
+      </svg>
+    </div>
+    <div class="h-frame-corner br">
+      <svg viewBox="0 0 60 60" fill="none">
+        <path d="M2 58 L2 2 L58 2" stroke="rgba(196,150,58,0.3)" stroke-width="1"/>
+        <path d="M8 52 L8 8 L52 8" stroke="rgba(196,150,58,0.12)" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="rgba(196,150,58,0.4)"/>
+      </svg>
+    </div>
+    <div class="h-frame-line-h top"></div>
+    <div class="h-frame-line-h bot"></div>
+    <div class="h-frame-line-v lft"></div>
+    <div class="h-frame-line-v rgt"></div>
+  </div>
+
+  <div class="hc">
+    <div class="h-pre">
+      <div class="h-pre-line"></div>
+      <span class="h-pre-text" data-ka="52 ვერცხლის ქ. · ძველი თბილისი · 2018" data-en="52 Vertskhli St · Old Tbilisi · Est. 2018">52 ვერცხლის ქ. · ძველი თბილისი · 2018</span>
+      <div class="h-pre-line r"></div>
+    </div>
+
+    <h1 class="h-title">MUSE</h1>
+
+    <div class="h-rule">
+      <div class="h-rule-line"></div>
+      <div class="h-rule-diamond"></div>
+      <div class="h-rule-line"></div>
+    </div>
+
+    <p class="h-sub-geo" data-ka="ანტიკური სალონი · ლაივ პიანო · ქართული სადღეგრძელო" data-en="Antique Salon · Live Piano · Georgian Toasts">ანტიკური სალონი · ლაივ პიანო · ქართული სადღეგრძელო</p>
+    <p class="h-sub" data-ka="Bar · Restaurant · Old Tbilisi" data-en="Bar · Restaurant · Old Tbilisi">Bar · Restaurant · Old Tbilisi</p>
+
+    <div class="h-pills">
+      <a href="#piano" class="h-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="20" height="12" rx="2"/><path d="M6 8V5a2 2 0 012-2h8a2 2 0 012 2v3"/><line x1="12" y1="8" x2="12" y2="20"/></svg>
+        <span data-ka="ლაივ პიანო ყოველ საღამოს" data-en="Live piano every evening">ლაივ პიანო ყოველ საღამოს</span>
+      </a>
+      <a href="#cocktails" class="h-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 22h8M12 11v11M3 3l9 8 9-8H3z"/></svg>
+        <span data-ka="ხელნაკეთი ქოქტეილები" data-en="Handcrafted cocktails">ხელნაკეთი ქოქტეილები</span>
+      </a>
+      <a href="#wine" class="h-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 22h8M12 11v11M5 3h14l-1 7a6 6 0 01-12 0L5 3z"/></svg>
+        <span data-ka="ქართული ბუნებრივი ღვინო" data-en="Georgian natural wine">ქართული ბუნებრივი ღვინო</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Tonight card -->
+  <div class="h-float">
+    <div class="h-float-label">
+      <div class="h-float-dot"></div>
+      <span data-ka="დღეს ღამით" data-en="Tonight">დღეს ღამით</span>
+    </div>
+    <div class="h-float-val" data-ka="ლაივ პიანო<br>20:00 სთ" data-en="Live Piano<br>20:00">ლაივ პიანო<br>20:00 სთ</div>
+    <div class="h-float-note" data-ka="ნინო ჭელიძე — ქართული ლირიკა & ჯაზ სტანდარტები" data-en="Nino Tchelidze — Georgian Lyric & Jazz Standards">ნინო ჭელიძე — ქართული ლირიკა & ჯაზ სტანდარტები</div>
+  </div>
+
+  <div class="h-scroll">
+    <div class="h-scl"></div>
+    <span data-ka="შედი ატმოსფეროში" data-en="enter the atmosphere">შედი ატმოსფეროში</span>
+  </div>
+</section>
+
+<!-- ══════════ AMBIENCE STRIP ═══════════════════════════ -->
+<div id="ambience">
+  <div class="amb-item rv">
+    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=85" alt="MUSE antique interior" loading="lazy">
+    <div class="amb-overlay"></div>
+    <div class="amb-caption">
+      <div class="amb-cap-num">01</div>
+      <div class="amb-cap-label" data-ka="სივრცე" data-en="The Space">სივრცე</div>
+      <div class="amb-cap-title" data-ka="ანტიკური სალონი" data-en="Antique Salon">ანტიკური სალონი</div>
+    </div>
+  </div>
+  <div class="amb-divider"></div>
+  <div class="amb-item rv d2">
+    <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=600&q=85" alt="Live piano at MUSE" loading="lazy">
+    <div class="amb-overlay"></div>
+    <div class="amb-caption">
+      <div class="amb-cap-num">02</div>
+      <div class="amb-cap-label" data-ka="ლაივ" data-en="Live">ლაივ</div>
+      <div class="amb-cap-title" data-ka="საფორტეპიანო შეღამება" data-en="Piano Evening">საფორტეპიანო შეღამება</div>
+    </div>
+  </div>
+  <div class="amb-divider"></div>
+  <div class="amb-item rv d3">
+    <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=600&q=85" alt="MUSE cocktails" loading="lazy">
+    <div class="amb-overlay"></div>
+    <div class="amb-caption">
+      <div class="amb-cap-num">03</div>
+      <div class="amb-cap-label" data-ka="ქოქტეილი" data-en="Cocktails">ქოქტეილი</div>
+      <div class="amb-cap-title" data-ka="ხელოვნება ჭიქაში" data-en="Art in a Glass">ხელოვნება ჭიქაში</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PIANO SCHEDULE ═══════════════════════════ -->
+<section id="piano" class="sec">
+  <div class="piano-glow" aria-hidden="true"></div>
+  <div class="piano-inner">
+    <div class="piano-header">
+      <div>
+        <p class="eye rv" data-ka="ლაივ პიანო · კვირეული პროგრამა" data-en="Live Piano · Weekly Program">ლაივ პიანო · კვირეული პროგრამა</p>
+        <p class="tgeo rv d1" data-ka="კვირეული ჩვენება" data-en="This week's performances">კვირეული ჩვენება</p>
+        <h2 class="ttl rv d2">The sound of<br><em>MUSE</em></h2>
+        <div class="rule rv d3">
+          <div class="rule-line"></div>
+          <div class="rule-diamond"></div>
+        </div>
+      </div>
+      <div class="rv-r d1">
+        <p class="piano-intro" data-ka="MUSE-ის ლაივ პიანო — ეს არ არის ფონური მუსიკა. <em>ეს სხვა ენაა.</em> ყოველ საღამოს, ანტიკური ავეჯის, ოქროს ჩარჩოების და სანთლის შუქის ფონზე, პიანისტი ქმნის ატმოსფეროს, სადაც დრო ჩერდება." data-en="MUSE's live piano is not background music. <em>It's another language.</em> Each evening, against antique furniture, gilded frames, and candlelight, our pianist creates an atmosphere where time stops.">
+          MUSE-ის ლაივ პიანო — ეს არ არის ფონური მუსიკა. <em>ეს სხვა ენაა.</em> ყოველ საღამოს, ანტიკური ავეჯის, ოქროს ჩარჩოების და სანთლის შუქის ფონზე, პიანისტი ქმნის ატმოსფეროს, სადაც დრო ჩერდება.
+        </p>
+      </div>
+    </div>
+
+    <!-- Piano keys decoration -->
+    <div class="keys-deco rv" aria-hidden="true">
+      <div class="key-w"></div><div class="key-b"></div>
+      <div class="key-w"></div><div class="key-w"></div><div class="key-b"></div>
+      <div class="key-w"></div><div class="key-b"></div><div class="key-w"></div>
+      <div class="key-w"></div><div class="key-b"></div><div class="key-w"></div>
+      <div class="key-b"></div><div class="key-w"></div><div class="key-w"></div>
+      <div class="key-b"></div><div class="key-w"></div><div class="key-b"></div>
+      <div class="key-w"></div><div class="key-w"></div><div class="key-b"></div>
+      <div class="key-w"></div><div class="key-b"></div><div class="key-w"></div>
+      <div class="key-w"></div><div class="key-b"></div><div class="key-w"></div>
+      <div class="key-b"></div><div class="key-w"></div>
+    </div>
+
+    <div class="sched rv">
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="ორშ" data-en="Mon">ორშ</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">Piano Jazz Classics</div>
+          <div class="sched-genre" data-ka="ჯაზ სტანდარტები — Brubeck, Coltrane, Evans" data-en="Jazz standards — Brubeck, Coltrane, Evans">ჯაზ სტანდარტები — Brubeck, Coltrane, Evans</div>
+        </div>
+        <div><div class="sched-time">20:00</div><div class="sched-time-lbl" data-ka="სთ" data-en="h">სთ</div></div>
+        <span class="sched-tag">Jazz</span>
+        <div class="sched-bg" aria-hidden="true">01</div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="სამ" data-en="Tue">სამ</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">ნინო ჭელიძე</div>
+          <div class="sched-genre" data-ka="ქართული ლირიკა — ავტორული სიმღერები & Bossa Nova" data-en="Georgian Lyric — Original songs & Bossa Nova">ქართული ლირიკა — ავტორული სიმღერები & Bossa Nova</div>
+        </div>
+        <div><div class="sched-time">20:30</div><div class="sched-time-lbl">სთ</div></div>
+        <span class="sched-tag burg" data-ka="ქართული" data-en="Georgian">ქართული</span>
+        <div class="sched-bg" aria-hidden="true">02</div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="ოთხ" data-en="Wed">ოთხ</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">ალექსანდრე კვარიანი</div>
+          <div class="sched-genre" data-ka="კლასიკური პიანო — შოპენი, სატი, ლისტი" data-en="Classical piano — Chopin, Satie, Liszt">კლასიკური პიანო — შოპენი, სატი, ლისტი</div>
+        </div>
+        <div><div class="sched-time">20:00</div><div class="sched-time-lbl">სთ</div></div>
+        <span class="sched-tag">Classical</span>
+        <div class="sched-bg" aria-hidden="true">03</div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="ხუთ" data-en="Thu">ხუთ</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">Soul & Blues Night</div>
+          <div class="sched-genre" data-ka="Soul, R&B, ბლუზი — trio ფორმატი" data-en="Soul, R&B, Blues — trio format">Soul, R&B, ბლუზი — trio ფორმატი</div>
+        </div>
+        <div><div class="sched-time">21:00</div><div class="sched-time-lbl">სთ</div></div>
+        <span class="sched-tag">Soul</span>
+        <div class="sched-bg" aria-hidden="true">04</div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="პარ" data-en="Fri">პარ</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">Grand Friday — მარიამ ვეკუა</div>
+          <div class="sched-genre" data-ka="ვოკალი + პიანო — ქართული & საერთაშორისო პოპ" data-en="Vocal + Piano — Georgian & International Pop">ვოკალი + პიანო — ქართული & საერთაშორისო პოპ</div>
+        </div>
+        <div><div class="sched-time">21:00</div><div class="sched-time-lbl">სთ</div></div>
+        <span class="sched-tag burg">Grand</span>
+        <div class="sched-bg" aria-hidden="true">05</div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="შაბ" data-en="Sat">შაბ</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">Saturday Salon — Duo Set</div>
+          <div class="sched-genre" data-ka="პიანო + ვიოლინო — ორი სეტი, 20:00 & 22:30" data-en="Piano + Violin — Two sets, 20:00 & 22:30">პიანო + ვიოლინო — ორი სეტი, 20:00 & 22:30</div>
+        </div>
+        <div><div class="sched-time">20:00</div><div class="sched-time-lbl">სთ</div></div>
+        <span class="sched-tag burg">Salon</span>
+        <div class="sched-bg" aria-hidden="true">06</div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-day" data-ka="კვი" data-en="Sun">კვი</div></div>
+        <div class="sched-info">
+          <div class="sched-artist">Sunday Quiet — Solo Piano</div>
+          <div class="sched-genre" data-ka="ამბიენტ & ნეოკლასიკა — არარქინი, ნიჩ" data-en="Ambient & Neoclassical — Arnalds, Nils Frahm">ამბიენტ & ნეოკლასიკა — Ólafur Arnalds, Nils Frahm</div>
+        </div>
+        <div><div class="sched-time">19:30</div><div class="sched-time-lbl">სთ</div></div>
+        <span class="sched-tag">Ambient</span>
+        <div class="sched-bg" aria-hidden="true">07</div>
+      </div>
+    </div>
+
+    <div class="piano-note rv d2">
+      <div class="piano-note-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4963A" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </div>
+      <p data-ka='"ლაივ მუსიკა — ეს ჩვენი სტუმრებისთვის საჩუქარია. ყველა სეანსი უფასოა. ჭიქის ქვეშ, ანტიკური სარკის პირისპირ." — MUSE Team' data-en='"Live music is our gift to guests. Every session is complimentary. Beneath a glass, facing an antique mirror." — MUSE Team'>
+        "ლაივ მუსიკა — ეს ჩვენი სტუმრებისთვის საჩუქარია. ყველა სეანსი უფასოა. ჭიქის ქვეშ, ანტიკური სარკის პირისპირ." — MUSE Team
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COCKTAILS ════════════════════════════════ -->
+<section id="cocktails" class="sec" style="padding-top: 0">
+  <div class="burg-glow" aria-hidden="true"></div>
+  <div class="ckt-inner">
+    <div class="rv">
+      <p class="eye" data-ka="ქოქტეილების მენიუ" data-en="Cocktail Menu">ქოქტეილების მენიუ</p>
+      <p class="tgeo" data-ka="ხელოვნება ჭიქაში" data-en="Art in a Glass">ხელოვნება ჭიქაში</p>
+      <h2 class="ttl">Crafted with <em>intention</em></h2>
+      <div class="rule"><div class="rule-line"></div><div class="rule-diamond"></div></div>
+    </div>
+    <div class="ckt-grid rv d1">
+      <!-- Featured -->
+      <div class="ckt-card feat">
+        <div class="ckt-img">
+          <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=85" alt="MUSE signature cocktail" loading="lazy">
+          <div class="ckt-img-overlay"></div>
+          <div class="ckt-num">01</div>
+        </div>
+        <div class="ckt-body">
+          <span class="ckt-badge sig" data-ka="სიგნატურა" data-en="Signature">სიგნატურა</span>
+          <div class="ckt-name" style="font-size:1.8rem">The Muse</div>
+          <span class="ckt-name-geo" data-ka="ლეგენდა" data-en="The Legend">ლეგენდა</span>
+          <p class="ckt-desc" data-ka="Georgian Brandy, ჯვარი თაფლი, ალუბლის ლიქიორი, ბოლქვ-შებოლილი ice, gold dust. ჩვენი ყველაზე ხელოვნური ქოქტეილი — დამზადება 8 წუთი." data-en="Georgian Brandy, Jvari honey, cherry liqueur, smoke-kissed ice, gold dust. Our most artistic cocktail — 8 minutes to create.">
+            Georgian Brandy, ჯვარი თაფლი, ალუბლის ლიქიორი, ბოლქვ-შებოლილი ice, gold dust. ჩვენი ყველაზე ხელოვნური ქოქტეილი — დამზადება 8 წუთი.
+          </p>
+          <div class="ckt-footer">
+            <div class="ckt-price">24 <span>₾</span></div>
+            <a href="#reservation" class="btn-g" style="font-size:.5rem">
+              <span data-ka="ჯავშანი ამ ქოქტეილზე" data-en="Order ahead">ჯავშანი ამ ქოქტეილზე</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Cards -->
+      <div class="ckt-card rv d1">
+        <div class="ckt-img">
+          <img src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=500&q=85" alt="Tbilisi Old Town cocktail" loading="lazy">
+          <div class="ckt-img-overlay"></div>
+          <div class="ckt-num">02</div>
+        </div>
+        <div class="ckt-body">
+          <div class="ckt-name">Tbilisi Old Town</div>
+          <span class="ckt-name-geo" data-ka="ქვეყნის სიყვარული" data-en="Love of a City">ქვეყნის სიყვარული</span>
+          <p class="ckt-desc" data-ka="Chacha, pomegranate, ტარხუნა, lime, soda. ძველი თბილისის გემო." data-en="Chacha, pomegranate, tarragon, lime, soda. The taste of Old Tbilisi.">Chacha, pomegranate, ტარხუნა, lime, soda. ძველი თბილისის გემო.</p>
+          <div class="ckt-footer">
+            <div class="ckt-price">18 <span>₾</span></div>
+            <span class="ckt-badge" data-ka="Georgian" data-en="Georgian">Georgian</span>
+          </div>
+        </div>
+      </div>
+      <div class="ckt-card rv d2">
+        <div class="ckt-img">
+          <img src="https://images.unsplash.com/photo-1541544537156-7627a7a4aa1c?w=500&q=85" alt="Antique mirror cocktail" loading="lazy">
+          <div class="ckt-img-overlay"></div>
+          <div class="ckt-num">03</div>
+        </div>
+        <div class="ckt-body">
+          <div class="ckt-name">Antique Mirror</div>
+          <span class="ckt-name-geo" data-ka="სარკის ამბავი" data-en="Reflection">სარკის ამბავი</span>
+          <p class="ckt-desc" data-ka="Gin, elderflower, cucumber, bergamot, crystal ice sphere." data-en="Gin, elderflower, cucumber, bergamot, crystal ice sphere.">Gin, elderflower, cucumber, bergamot, crystal ice sphere.</p>
+          <div class="ckt-footer">
+            <div class="ckt-price">20 <span>₾</span></div>
+            <span class="ckt-badge">New</span>
+          </div>
+        </div>
+      </div>
+      <div class="ckt-card rv d3">
+        <div class="ckt-img">
+          <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=500&q=85" alt="Velvet Nocturne cocktail" loading="lazy">
+          <div class="ckt-img-overlay"></div>
+          <div class="ckt-num">04</div>
+        </div>
+        <div class="ckt-body">
+          <div class="ckt-name">Velvet Nocturne</div>
+          <span class="ckt-name-geo" data-ka="ბარდვული ღამე" data-en="The Dark Hour">ბარდვული ღამე</span>
+          <p class="ckt-desc" data-ka="Bourbon, ბალზამი, dark cherry, smoke, smoked rosemary sprig." data-en="Bourbon, Amaro, dark cherry, smoke, smoked rosemary sprig.">Bourbon, Amaro, dark cherry, smoke, smoked rosemary sprig.</p>
+          <div class="ckt-footer">
+            <div class="ckt-price">22 <span>₾</span></div>
+            <span class="ckt-badge sig" data-ka="ნუარი" data-en="Noir">ნუარი</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WINE ══════════════════════════════════════ -->
+<section id="wine" class="sec">
+  <div class="wine-inner">
+    <div class="rv">
+      <p class="eye" data-ka="ღვინის კარტა" data-en="Wine List">ღვინის კარტა</p>
+      <p class="tgeo" data-ka="ქართული ბუნებრივი ღვინო" data-en="Georgian Natural Wine">ქართული ბუნებრივი ღვინო</p>
+      <h2 class="ttl">Aged in <em>qvevri</em></h2>
+    </div>
+    <div class="wine-layout">
+      <div class="wine-img-wrap rl d1">
+        <img class="wine-img"
+          src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=85"
+          alt="Georgian natural wine" loading="lazy">
+        <div class="wine-img-border" aria-hidden="true"></div>
+        <div class="wine-seal">
+          <span class="wine-seal-txt">ბუნებრივი<br>ღვინო<br>QVEVRI</span>
+        </div>
+      </div>
+      <div class="rr d2">
+        <!-- Amber / Orange -->
+        <div class="wl-section">
+          <div class="wl-sec-head">
+            <span class="wl-sec-ornament">◆</span>
+            <span class="wl-sec-title" data-ka="ქარვისფერი / Amber" data-en="Amber / Orange Wines">ქარვისფერი / Amber</span>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">
+              Rkatsiteli Qvevri
+              <small>Pheasant's Tears · Kakheti · 2022</small>
+            </div>
+            <div class="wl-price">55 <span>₾</span></div>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">
+              Mtsvane Qvevri
+              <small>Nikoladzeuri · Imereti · 2021</small>
+            </div>
+            <div class="wl-price">60 <span>₾</span></div>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">
+              Chinuri Skin Contact
+              <small>Gotsa Family Wines · Kartli · 2022</small>
+            </div>
+            <div class="wl-price">65 <span>₾</span></div>
+          </div>
+        </div>
+        <!-- Red -->
+        <div class="wl-section">
+          <div class="wl-sec-head">
+            <span class="wl-sec-ornament">◆</span>
+            <span class="wl-sec-title" data-ka="წითელი" data-en="Red Wines">წითელი</span>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">
+              Saperavi Qvevri
+              <small>Jakeli Wines · Kakheti · 2021</small>
+            </div>
+            <div class="wl-price">58 <span>₾</span></div>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">
+              Shavkapito
+              <small>Okro's Wines · Kartli · 2020</small>
+            </div>
+            <div class="wl-price">70 <span>₾</span></div>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">
+              Aladasturi
+              <small>Ramaz Nikoladze · Imereti · 2021</small>
+            </div>
+            <div class="wl-price">75 <span>₾</span></div>
+          </div>
+        </div>
+        <!-- Spirits -->
+        <div class="wl-section">
+          <div class="wl-sec-head">
+            <span class="wl-sec-ornament">◆</span>
+            <span class="wl-sec-title" data-ka="სპირიტუოზები" data-en="Spirits">სპირიტუოზები</span>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">Chacha <small data-ka="ხელნაკეთი · ერთი თვე" data-en="House-made · Aged one month">ხელნაკეთი · ერთი თვე</small></div>
+            <div class="wl-price">14 <span>₾/shot</span></div>
+          </div>
+          <div class="wl-item">
+            <div class="wl-dot"></div>
+            <div class="wl-name">Georgian Brandy <small>Sarajishvili VSOP</small></div>
+            <div class="wl-price">16 <span>₾/shot</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="#reservation" class="btn-gd">
+            <span data-ka="სადეგუსტაციო შეკვეთა" data-en="Book a tasting">სადეგუსტაციო შეკვეთა</span>
+          </a>
+          <a href="#reservation" class="btn-g">
+            <span data-ka="ბოთლი ჯავშანი" data-en="Reserve a bottle">ბოთლი ჯავშანი</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ GALLERY ══════════════════════════════════ -->
+<section id="gallery">
+  <div class="gal-inner">
+    <div class="gal-header rv">
+      <div>
+        <p class="eye" data-ka="ატმოსფერო" data-en="Atmosphere">ატმოსფერო</p>
+        <p class="tgeo" data-ka="MUSE-ის სული" data-en="The Soul of MUSE">MUSE-ის სული</p>
+        <h2 class="ttl">Seen to be <em>felt</em></h2>
+      </div>
+      <div class="gal-quote rv-r d2">
+        "Absolute 10 out of 10. The music, the atmosphere, the barmans who create cocktails just for you — the best experience I've ever had."
+        <cite>— Google Review</cite>
+      </div>
+    </div>
+    <div class="gal-mosaic">
+      <div class="gi g1 rv">
+        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=700&q=85" alt="MUSE interior atmosphere" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="ინტერიერი" data-en="Interior">ინტერიერი</div><div class="gi-ct" data-ka="ანტიკური სალონი" data-en="Antique Salon">ანტიკური სალონი</div></div></div>
+      </div>
+      <div class="gi g2 rv d1">
+        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=500&q=85" alt="Piano at MUSE" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="მუსიკა" data-en="Music">მუსიკა</div><div class="gi-ct" data-ka="ლაივ პიანო" data-en="Live Piano">ლაივ პიანო</div></div></div>
+      </div>
+      <div class="gi g3 rv d2">
+        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=500&q=85" alt="Cocktails MUSE" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl">Cocktails</div><div class="gi-ct">The Muse</div></div></div>
+      </div>
+      <div class="gi g4 rv d1">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&q=85" alt="Georgian wine MUSE" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="ღვინო" data-en="Wine">ღვინო</div><div class="gi-ct">Qvevri</div></div></div>
+      </div>
+      <div class="gi g5 rv d2">
+        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=500&q=85" alt="MUSE bar atmosphere" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="ბარი" data-en="Bar">ბარი</div><div class="gi-ct" data-ka="ხელოვნება" data-en="Craft">ხელოვნება</div></div></div>
+      </div>
+      <div class="gi g6 rv d3">
+        <img src="https://images.unsplash.com/photo-1541544537156-7627a7a4aa1c?w=500&q=85" alt="Evening at MUSE" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="საღამო" data-en="Evening">საღამო</div><div class="gi-ct" data-ka="სანთლის შუქი" data-en="Candlelight">სანთლის შუქი</div></div></div>
+      </div>
+      <div class="gi g7 rv d2">
+        <img src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=500&q=85" alt="MUSE toasts" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="სადღეგრძელო" data-en="Toast">სადღეგრძელო</div><div class="gi-ct" data-ka="ქართული ტრადიცია" data-en="Georgian Tradition">ქართული ტრადიცია</div></div></div>
+      </div>
+      <div class="gi g8 rv d3">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500&q=85" alt="MUSE food" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="კერძები" data-en="Cuisine">კერძები</div><div class="gi-ct" data-ka="სამზარეულო" data-en="Kitchen">სამზარეულო</div></div></div>
+      </div>
+      <div class="gi g9 rv d4">
+        <img src="https://images.unsplash.com/photo-1503431128871-cd250803fa41?w=500&q=85" alt="MUSE candle details" loading="lazy">
+        <div class="gi-c"><div><div class="gi-cl" data-ka="დეტალები" data-en="Details">დეტალები</div><div class="gi-ct" data-ka="სანთლები" data-en="Candles">სანთლები</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ RESERVATION ══════════════════════════════ -->
+<section id="reservation">
+  <div class="res-inner">
+    <div class="rl">
+      <p class="eye" data-ka="მაგიდის ჯავშანი" data-en="Table Reservation">მაგიდის ჯავშანი</p>
+      <p class="tgeo" data-ka="შემობრძანდით MUSE-ში" data-en="Join us at MUSE">შემობრძანდით MUSE-ში</p>
+      <h2 class="ttl">Reserve your<br><em>evening</em></h2>
+      <div class="rule"><div class="rule-line"></div><div class="rule-diamond"></div></div>
+      <p data-ka="MUSE — ეს პირადი გამოცდილებაა. ყველა მაგიდა ერთი გამოცდილებისთვის. ადგილები შეზღუდულია. ლაივ მუსიკის საღამოებზე — ჯავშანი სავალდებულოა." data-en="MUSE is a personal experience. Every table is for one evening. Seats are limited. For live music evenings — reservation is mandatory.">MUSE — ეს პირადი გამოცდილებაა. ყველა მაგიდა ერთი გამოცდილებისთვის. ადგილები შეზღუდულია. ლაივ მუსიკის საღამოებზე — ჯავშანი სავალდებულოა.</p>
+      <div class="res-details">
+        <div class="rd">
+          <div class="rd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.34h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><h4 data-ka="ტელეფონი" data-en="Phone">ტელეფონი</h4><p><a href="tel:+995599983838">+995 599 98 38 38</a></p></div>
+        </div>
+        <div class="rd">
+          <div class="rd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4 data-ka="მისამართი" data-en="Address">მისამართი</h4><p data-ka="52 ვერცხლის ქ. · ძველი თბილისი" data-en="52 Vertskhli St · Old Tbilisi">52 ვერცხლის ქ. · ძველი თბილისი</p></div>
+        </div>
+        <div class="rd">
+          <div class="rd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><h4 data-ka="სამუშაო საათები" data-en="Hours">სამუშაო საათები</h4><p data-ka="ყოველდღე: 09:00 – 02:00" data-en="Daily: 09:00 – 02:00">ყოველდღე: 09:00 – 02:00</p></div>
+        </div>
+        <div class="rd">
+          <div class="rd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="20" height="12" rx="2"/><path d="M6 8V5a2 2 0 012-2h8a2 2 0 012 2v3"/><line x1="12" y1="8" x2="12" y2="20"/></svg></div>
+          <div><h4 data-ka="ლაივ მუსიკა" data-en="Live Music">ლაივ მუსიკა</h4><p data-ka="ყოველდღე: 20:00 სთ-დან" data-en="Daily: from 20:00">ყოველდღე: 20:00 სთ-დან</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="rr d1">
+      <div class="form-ornament">
+        <div class="fo-line"></div>
+        <div class="fo-center">✦</div>
+        <div class="fo-line"></div>
+      </div>
+      <form class="rform" id="rform" onsubmit="submitR(event)">
+        <div class="fg">
+          <div class="fl">
+            <label for="rn" data-ka="სახელი" data-en="Name">სახელი</label>
+            <input type="text" id="rn" required placeholder="მარიამ გელაშვილი">
+          </div>
+          <div class="fl">
+            <label for="rp" data-ka="ტელეფონი" data-en="Phone">ტელეფონი</label>
+            <input type="tel" id="rp" placeholder="+995 5XX XXX XXX">
+          </div>
+        </div>
+        <div class="fg">
+          <div class="fl">
+            <label for="rd" data-ka="თარიღი" data-en="Date">თარიღი</label>
+            <input type="date" id="rd" required>
+          </div>
+          <div class="fl">
+            <label for="rt" data-ka="დრო" data-en="Time">დრო</label>
+            <select id="rt">
+              <option>18:00</option><option>18:30</option>
+              <option>19:00</option><option>19:30</option>
+              <option selected>20:00</option><option>20:30</option>
+              <option>21:00</option><option>21:30</option>
+              <option>22:00</option><option>22:30</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg">
+          <div class="fl">
+            <label for="rg" data-ka="სტუმრები" data-en="Guests">სტუმრები</label>
+            <select id="rg">
+              <option>1</option><option selected>2</option>
+              <option>3</option><option>4</option>
+              <option>5</option><option>6+</option>
+            </select>
+          </div>
+          <div class="fl">
+            <label for="rocc" data-ka="ოკაზია" data-en="Occasion">ოკაზია</label>
+            <select id="rocc">
+              <option data-ka="ჩვეულებრივი ვიზიტი" data-en="Regular Visit">ჩვეულებრივი ვიზიტი</option>
+              <option data-ka="ლაივ მუსიკა" data-en="Live Music Evening">ლაივ მუსიკა</option>
+              <option data-ka="დაბადების დღე" data-en="Birthday">დაბადების დღე</option>
+              <option data-ka="სადეგუსტაციო" data-en="Wine Tasting">სადეგუსტაციო</option>
+              <option data-ka="პრივატული" data-en="Private Event">პრივატული</option>
+            </select>
+          </div>
+        </div>
+        <div class="fl">
+          <label for="rnote" data-ka="სპეციალური სურვილი" data-en="Special Request">სპეციალური სურვილი</label>
+          <textarea id="rnote" rows="3" placeholder="..."></textarea>
+        </div>
+        <button type="submit" class="sbtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          <span data-ka="ჯავშნის გაგზავნა" data-en="Send Reservation">ჯავშნის გაგზავნა</span>
+        </button>
+      </form>
+      <div class="s-ok" id="sOk">
+        <div class="s-ok-ornament">✦</div>
+        <h3 data-ka="გმადლობთ!" data-en="Thank you!">გმადლობთ!</h3>
+        <p data-ka="MUSE-ი მოუთმენლად ელის თქვენს ვიზიტს. 24 სთ-ში დაგიდასტურებთ." data-en="MUSE looks forward to your visit. Confirmation within 24 hours.">MUSE-ი მოუთმენლად ელის თქვენს ვიზიტს. 24 სთ-ში დაგიდასტურებთ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ════════════════════════════════════ -->
+<footer>
+  <div class="f-logo">MUSE</div>
+  <div class="f-links">
+    <a href="#piano" data-ka="პიანო" data-en="Piano">პიანო</a>
+    <a href="#cocktails" data-ka="ქოქტეილები" data-en="Cocktails">ქოქტეილები</a>
+    <a href="#wine" data-ka="ღვინო" data-en="Wine">ღვინო</a>
+    <a href="#gallery" data-ka="გალერეა" data-en="Gallery">გალერეა</a>
+    <a href="#reservation" data-ka="ჯავშანი" data-en="Reserve">ჯავშანი</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+  </div>
+  <p class="f-copy">© 2025 MUSE · 52 Vertskhli St · Old Tbilisi, Georgia</p>
+</footer>
+
+<script>
+/* ─── CURSOR ─────────────────────────────────────────── */
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-r');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function lp(){ rx+=(mx-rx)*.11; ry+=(my-ry)*.11; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(lp); })();
+document.querySelectorAll('a,button,.gi,.ckt-card,.amb-item,.sched-row,.wl-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('xl'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('xl'));
+});
+
+/* ─── GOLD DUST ──────────────────────────────────────── */
+const dust = document.getElementById('dust');
+for(let i=0;i<30;i++){
+  const d = document.createElement('div'); d.className='dp';
+  const sz = .8+Math.random()*2;
+  d.style.cssText=`
+    left:${5+Math.random()*90}%;
+    top:${10+Math.random()*70}%;
+    width:${sz}px; height:${sz}px;
+    --dx:${(Math.random()-.5)*100}px;
+    --dy:${-40-Math.random()*160}px;
+    animation-duration:${3+Math.random()*5}s;
+    animation-delay:${Math.random()*8}s;
+  `;
+  dust.appendChild(d);
+}
+
+/* ─── NAV ────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>80),{passive:true});
+
+/* ─── HERO PARALLAX ──────────────────────────────────── */
+const hbg = document.getElementById('hbg');
+window.addEventListener('scroll',()=>{
+  if(scrollY<window.innerHeight) hbg.style.transform=`translateY(${scrollY*.28}px)`;
+},{passive:true});
+
+/* ─── REVEAL ─────────────────────────────────────────── */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+},{threshold:.1});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el=>io.observe(el));
+
+/* ─── HIGHLIGHT TODAY IN SCHEDULE ───────────────────── */
+const dayMap = [0,1,2,3,4,5,6];
+const todayIdx = new Date().getDay();
+const schedRows = document.querySelectorAll('.sched-row');
+if(schedRows[todayIdx]){
+  schedRows[todayIdx].style.background='rgba(92,26,43,.18)';
+  schedRows[todayIdx].style.borderColor='rgba(196,150,58,.2)';
+}
+
+/* ─── LANGUAGE ───────────────────────────────────────── */
+function sLang(l){
+  document.querySelectorAll('.lsw button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  document.querySelectorAll('[data-ka][data-en]').forEach(el=>{
+    const v=el.getAttribute('data-'+l); if(!v)return; el.innerHTML=v;
+  });
+  document.documentElement.lang=l==='ka'?'ka':'en';
+}
+
+/* ─── DATE ───────────────────────────────────────────── */
+const tom=new Date(); tom.setDate(tom.getDate()+1);
+document.getElementById('rd').value=tom.toISOString().split('T')[0];
+
+/* ─── FORM ───────────────────────────────────────────── */
+function submitR(e){
+  e.preventDefault();
+  document.getElementById('rform').style.display='none';
+  document.getElementById('sOk').classList.add('show');
+}
+
+/* ─── SMOOTH ANCHORS ─────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
